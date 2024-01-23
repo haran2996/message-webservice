@@ -5,7 +5,7 @@ const adminValidator = require("../middleware/adminValidation");
 router.use(adminValidator);
 
 router.post("/user", async function (req, res) {
-  const { fName, lName, email, password, role } = req.body;
+  const { fName, lName, email, password, role = "user" } = req.body;
   const db = await dbConnection.getDB();
   const collection = db.collection("user");
   const user = await collection.findOne({ email });

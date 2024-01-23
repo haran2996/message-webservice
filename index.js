@@ -18,6 +18,7 @@ app.use("*", (req, res, next) => {
   const skipPath = [
     { path: "/", type: "get" },
     { path: "", type: "get" },
+    { path: "/auth/logout", type: "get" },
     { path: "/auth/login", type: "post" },
   ];
   if (
@@ -41,8 +42,8 @@ app.use("/admin", adminRouter);
 app.use("/message", messageRouter);
 app.use("/group", groupRouter);
 app.use(errorHandler);
-app.listen(port, () => {
+const server = app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
 
-module.exports = app;
+module.exports = { app, server };
